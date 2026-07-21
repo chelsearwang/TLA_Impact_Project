@@ -16,7 +16,7 @@
   <!-- 01: WHAT IS A LINKED LIST -->
   <section id="intro">
     <div class="sec-head"><span class="sec-num">01</span><h2>What is a linked list?</h2></div>
-    <p class="sec-sub">A linked list is a chain of nodes. Each node holds a value and a pointer to the next node in the chain — that pointer is the only thing connecting one node to the next.</p>
+    <p class="sec-sub">A linked list is a chain of nodes. Each node holds a value and a pointer to the next node in the chain. That pointer is the only thing connecting one node to the next.</p>
  
     <div class="demo-block">
       <div class="mini-track">
@@ -33,7 +33,7 @@
     <div class="explain-grid">
       <div class="explain-card">
         <h3>Head</h3>
-        <p>The list itself is nothing but a pointer called "head," pointing at the first node. Lose that pointer and the whole list is unreachable, even though the nodes still exist in memory.</p>
+        <p>The list itself can be accessed with a pointer called "head," pointing at the first node. If you lose that pointer, the whole list is unreachable even though the nodes still exist in memory.</p>
       </div>
       <div class="explain-card">
         <h3>Null</h3>
@@ -45,7 +45,9 @@
     <!-- 02: WHAT IS A NODE -->
   <section id="node">
     <div class="sec-head"><span class="sec-num">02</span><h2>What is a node?</h2></div>
-    <p class="sec-sub">A node is a small package holding two things: a value, and a pointer to the next node — usually just called <strong>next</strong>. That's the entire unit. No size, no neighbors, no built-in position, just value + next.</p>
+    <p class="sec-sub">Every Linked List is made up of individual Nodes. If you open up a single node, it has two simple parts: Data: The actual value you want to store (like a number, string, or object).
+
+Next Pointer: A reference (or memory address) pointing directly to the next node in line. The very last node points to null, marking the end of the list.</p>
  
     <div class="node-diagram">
       <div class="node-diagram-item">
