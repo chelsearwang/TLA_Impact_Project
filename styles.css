@@ -64,7 +64,7 @@
   }
   .mini-null{font-family:var(--mono);color:var(--null);font-size:13px;margin-left:8px;}
 
-  /* ---------- NODE DIAGRAM ---------- */
+  /* ---------- NODE DIAGRAM (section 02) ---------- */
   .node-diagram{
     display:flex;
     align-items:flex-end;
@@ -87,7 +87,18 @@
 
   /* ---------- SECTION LABELS ---------- */
   section{padding:36px 0;}
-  section:first-child{padding-top:56px;}
+  section:first-child{padding-top:8px;}
+
+  /* ---------- PAGE HEADER ---------- */
+  .page-header{padding-top:56px;}
+  .page-title{
+    font-family:var(--display);
+    font-size:clamp(28px, 4vw, 38px);
+    font-weight:700;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin:0;
+  }
   .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
   .sec-num{font-family:var(--mono);color:var(--pointer);font-size:14px;font-weight:600;}
   h2{
@@ -96,7 +107,24 @@
     margin:0;
     font-weight:600;
   }
-  .sec-sub{color:var(--ink-soft);margin:6px 0 24px;max-width:640px;}
+  .sec-sub{color:var(--ink-soft);margin:6px 0 24px;max-width:820px;}
+
+  .node-parts-list{
+    color:var(--ink-soft);
+    margin:0 0 24px;
+    padding-left:22px;
+    max-width:820px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .node-parts-list li{padding-left:4px;}
+  .node-parts-list li::marker{
+    font-family:var(--mono);
+    font-weight:600;
+    color:var(--pointer);
+  }
+  .node-parts-list strong{color:var(--ink);}
 
   /* ---------- EXPLAINER GRID ---------- */
   .explain-grid{

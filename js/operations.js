@@ -16,13 +16,13 @@ function buildInsertHeadSteps(val){
   const newNode = {id: nextId++, value: val, x: START_X + nextSlot*SLOT_W, next: null};
   nextSlot++;
   nodes.push(newNode);
-  steps.push({snapshot: snapshotNow(), highlight:[newNode.id], newIds:[newNode.id], desc:'A new node holding <strong>'+val+'</strong> is created in memory. Its <strong>next</strong> is null for now — it isn\'t linked to anything yet.', codeLines:CODE_INSERT_HEAD, hiLine:1});
+  steps.push({snapshot: snapshotNow(), highlight:[newNode.id], newIds:[newNode.id], desc:'A new node holding <strong>'+val+'</strong> is created in memory. Its <strong>next</strong> is null for now. The node isn\'t linked to anything yet.', codeLines:CODE_INSERT_HEAD, hiLine:1});
   const oldHead = headId;
   newNode.next = oldHead;
   steps.push({snapshot: snapshotNow(), highlight:[newNode.id], arrowHighlight: oldHead? [[newNode.id, oldHead]]:[], desc:'The new node\'s <strong>next</strong> pointer is set to the old head, so it now points at what used to be first.', codeLines:CODE_INSERT_HEAD, hiLine:2});
   headId = newNode.id;
-  steps.push({snapshot: snapshotNow(), highlight:[newNode.id], desc:'<strong>head</strong> is reassigned to the new node. Nothing moved — we just changed which node the list starts counting from.', codeLines:CODE_INSERT_HEAD, hiLine:3});
-  steps.push({snapshot: snapshotNow(), highlight:[newNode.id], desc:'The function returns the updated list.', codeLines:CODE_INSERT_HEAD, hiLine:4});
+  steps.push({snapshot: snapshotNow(), highlight:[newNode.id], desc:'<strong>head</strong> is reassigned to point to the new node. Nothing moved, we just changed which node the list starts from.', codeLines:CODE_INSERT_HEAD, hiLine:3});
+  steps.push({snapshot: snapshotNow(), highlight:[newNode.id], desc:'Return the updated list.', codeLines:CODE_INSERT_HEAD, hiLine:4});
   return steps;
 }
 
@@ -53,7 +53,7 @@ function buildInsertTailSteps(val){
     steps.push({snapshot: snapshotNow(), highlight:[newNode.id], desc:'The function returns the updated list.', codeLines:CODE_INSERT_TAIL, hiLine:10});
     return steps;
   }
-  steps.push({snapshot: snapshotNow(), highlight:[newNode.id], desc:'The list isn\'t empty, so that shortcut is skipped — we need to walk to the real end.', codeLines:CODE_INSERT_TAIL, hiLine:2});
+  steps.push({snapshot: snapshotNow(), highlight:[newNode.id], desc:'If the list was originally empty, we could just set head to point to the newly created node and return. In this case it is not, so we need to walk to the real end.', codeLines:CODE_INSERT_TAIL, hiLine:2});
   let cur = headId;
   steps.push({snapshot: snapshotNow(), highlight:[newNode.id, cur], desc:'<strong>cur</strong> starts at head.', codeLines:CODE_INSERT_TAIL, hiLine:5});
   let guard=0;
@@ -93,7 +93,7 @@ const CODE_DELETE = [
 ];
 function buildDeleteSteps(val){
   const steps = [];
-  steps.push({snapshot: snapshotNow(), highlight:[], desc:'Looking for a node holding <strong>'+val+'</strong> to remove.', codeLines:CODE_DELETE, hiLine:0});
+  steps.push({snapshot: snapshotNow(), highlight:[], desc:'Looking for a node holding <strong>'+val+'</strong> to remove from the linked list.', codeLines:CODE_DELETE, hiLine:0});
   steps.push({snapshot: snapshotNow(), highlight:[], desc:'List isn\'t empty, so we keep going.', codeLines:CODE_DELETE, hiLine:1});
   if(headId===null){
     return steps;
@@ -125,7 +125,7 @@ function buildDeleteSteps(val){
       steps.push({snapshot: snapshotNow(), highlight:[prev,cur], dyingIds:[deletedId], desc:'Match found. <strong>'+prevNode.value+'</strong>.next is rewired to point past it, straight to whatever came after.', codeLines:CODE_DELETE, hiLine:10});
       prevNode.next = afterId;
       nodes = nodes.filter(n=>n.id!==deletedId);
-      steps.push({snapshot: snapshotNow(), highlight:[prev], desc:'The deleted node is now unreachable, so it\'s gone. The function returns the updated list — one pointer changed, every other node stayed exactly where it was.', codeLines:CODE_DELETE, hiLine:11});
+      steps.push({snapshot: snapshotNow(), highlight:[prev], desc:'The deleted node is now gone. The function returns the updated list. Notice how only one pointer changed, every other node stayed exactly where it was.', codeLines:CODE_DELETE, hiLine:11});
       break;
     }
     prev = cur; cur = curNode.next;
@@ -153,9 +153,9 @@ const CODE_SEARCH = [
 ];
 function buildSearchSteps(val){
   const steps = [];
-  steps.push({snapshot: snapshotNow(), highlight:[], desc:'Searching for <strong>'+val+'</strong>.', codeLines:CODE_SEARCH, hiLine:0});
+  steps.push({snapshot: snapshotNow(), highlight:[], desc:'Search to see if the value <strong>'+val+'</strong> is in the linked list.', codeLines:CODE_SEARCH, hiLine:0});
   let cur = headId, guard=0, found=false;
-  steps.push({snapshot: snapshotNow(), highlight: cur?[cur]:[], desc:'<strong>cur</strong> starts at head. We can only follow arrows — no shortcuts.', codeLines:CODE_SEARCH, hiLine:1});
+  steps.push({snapshot: snapshotNow(), highlight: cur?[cur]:[], desc:'<strong>cur</strong> starts at head.', codeLines:CODE_SEARCH, hiLine:1});
   while(cur!==null){
     const cn = findNode(cur);
     steps.push({snapshot: snapshotNow(), highlight:[cur], desc:'<strong>cur</strong> is not null, so the loop continues.', codeLines:CODE_SEARCH, hiLine:2});
@@ -211,6 +211,6 @@ function buildReverseSteps(){
   steps.push({snapshot: snapshotNow(), highlight:[prev], desc:'<strong>cur</strong> is null, so the loop ends.', codeLines:CODE_REVERSE, hiLine:3});
   headId = prev;
   steps.push({snapshot: snapshotNow(), highlight:[headId], desc:'<strong>head</strong> is reassigned to what used to be the last node.', codeLines:CODE_REVERSE, hiLine:9});
-  steps.push({snapshot: snapshotNow(), highlight:[headId], desc:'The function returns the reversed list — same nodes, flipped arrows.', codeLines:CODE_REVERSE, hiLine:10});
+  steps.push({snapshot: snapshotNow(), highlight:[headId], desc:'The function returns the reversed list. The nodes are the same but the pointers are flipped.', codeLines:CODE_REVERSE, hiLine:10});
   return steps;
 }
