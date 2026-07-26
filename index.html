@@ -10,14 +10,14 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
- 
+
 <div class="wrap">
- 
+
   <!-- 01: WHAT IS A LINKED LIST -->
   <section id="intro">
     <div class="sec-head"><span class="sec-num">01</span><h2>What is a linked list?</h2></div>
-    <p class="sec-sub">A linked list is a chain of nodes. Each node holds a value and a pointer to the next node in the chain. That pointer is the only thing connecting one node to the next.</p>
- 
+    <p class="sec-sub">A linked list is a chain of nodes. Each node holds a value and a pointer to the next node in the chain — that pointer is the only thing connecting one node to the next.</p>
+
     <div class="demo-block">
       <div class="mini-track">
         <div class="mini-node">4</div>
@@ -29,11 +29,11 @@
       <span class="mini-null">→ null</span>
       <span class="demo-block-note">head → 4 → 9 → 2 → null</span>
     </div>
- 
+
     <div class="explain-grid">
       <div class="explain-card">
         <h3>Head</h3>
-        <p>The list itself can be accessed with a pointer called "head," pointing at the first node. If you lose that pointer, the whole list is unreachable even though the nodes still exist in memory.</p>
+        <p>The list itself is nothing but a pointer called "head," pointing at the first node. Lose that pointer and the whole list is unreachable, even though the nodes still exist in memory.</p>
       </div>
       <div class="explain-card">
         <h3>Null</h3>
@@ -42,13 +42,11 @@
     </div>
   </section>
 
-    <!-- 02: WHAT IS A NODE -->
+  <!-- 02: WHAT IS A NODE -->
   <section id="node">
     <div class="sec-head"><span class="sec-num">02</span><h2>What is a node?</h2></div>
-    <p class="sec-sub">Every Linked List is made up of individual Nodes. If you open up a single node, it has two simple parts: Data: The actual value you want to store (like a number, string, or object).
+    <p class="sec-sub">A node is a small package holding two things: a value, and a pointer to the next node — usually just called <strong>next</strong>. That's the entire unit. No size, no neighbors, no built-in position, just value + next.</p>
 
-Next Pointer: A reference (or memory address) pointing directly to the next node in line. The very last node points to null, marking the end of the list.</p>
- 
     <div class="node-diagram">
       <div class="node-diagram-item">
         <div class="mini-node">4</div>
@@ -64,11 +62,12 @@ Next Pointer: A reference (or memory address) pointing directly to the next node
       </div>
     </div>
   </section>
-    <!-- 03: LINKED LIST VS ARRAY -->
+
+  <!-- 03: LINKED LIST VS ARRAY -->
   <section id="comparison">
     <div class="sec-head"><span class="sec-num">03</span><h2>Linked list vs. array</h2></div>
     <p class="sec-sub">Both store an ordered collection of values, but the way they're laid out in memory changes what's cheap and what's expensive.</p>
- 
+
     <div class="compare-table">
       <div class="compare-row compare-row-head">
         <div class="compare-cell compare-cell-label"></div>
@@ -77,8 +76,8 @@ Next Pointer: A reference (or memory address) pointing directly to the next node
       </div>
       <div class="compare-row">
         <div class="compare-cell compare-cell-label">Memory layout</div>
-        <div class="compare-cell">Scattered: Nodes live anywhere in memory, connected by pointers.</div>
-        <div class="compare-cell">Contiguous: Stored in one solid, uninterrupted block of memory.</div>
+        <div class="compare-cell">Nodes live wherever there's room, scattered around memory and connected only by pointers.</div>
+        <div class="compare-cell">One contiguous block — every element sits right next to the last, back to back.</div>
       </div>
       <div class="compare-row">
         <div class="compare-cell compare-cell-label">Accessing by index</div>
@@ -97,12 +96,12 @@ Next Pointer: A reference (or memory address) pointing directly to the next node
       </div>
     </div>
   </section>
- 
+
   <!-- 04: SIMULATION -->
   <section id="simulation">
     <div class="sec-head"><span class="sec-num">04</span><h2>Simulation</h2></div>
     <p class="sec-sub">Every example below starts from the same list — <strong>head → 4 → 9 → 2 → null</strong> — and walks through one operation, one pointer change at a time. Pick one to run it.</p>
- 
+
     <div class="example-grid" id="exampleGrid">
       <button class="example-card" data-ex="insertHead">
         <div class="ex-top"><span class="ex-title">Insert at the head</span><span class="ex-tag">O(1)</span></div>
@@ -130,12 +129,13 @@ Next Pointer: A reference (or memory address) pointing directly to the next node
         <span class="ex-run">Run example →</span>
       </button>
     </div>
- 
+
     <div class="sim-panel">
       <div class="sim-header">
+        <span class="sim-header-label">Now showing</span>
         <span class="sim-header-title" id="currentExampleTitle">Insert at the head</span>
       </div>
- 
+
       <div class="stage">
         <div class="stage-inner" id="stageInner">
           <svg class="arrows" id="arrowSvg">
@@ -150,7 +150,7 @@ Next Pointer: A reference (or memory address) pointing directly to the next node
           </svg>
         </div>
       </div>
- 
+
       <div class="step-panel">
         <div class="code-box" id="codeBox"></div>
         <div class="desc-box">
@@ -165,17 +165,22 @@ Next Pointer: A reference (or memory address) pointing directly to the next node
       </div>
     </div>
   </section>
- 
+
   <!-- 05: QUIZ -->
   <section id="quiz">
     <div class="sec-head"><span class="sec-num">05</span><h2>Quick check</h2></div>
-    <p class="sec-sub">Four questions to test yout understanding. Explanations after each!</p>
+    <p class="sec-sub">Four questions. No pressure — wrong answers explain themselves.</p>
     <div id="quizContainer"></div>
     <div class="quiz-score" id="quizScore"></div>
   </section>
- 
+
 </div>
- 
-<script src="script.js"></script>
+
+<script src="js/model.js"></script>
+<script src="js/render.js"></script>
+<script src="js/playback.js"></script>
+<script src="js/operations.js"></script>
+<script src="js/examples.js"></script>
+<script src="js/quiz.js"></script>
 </body>
 </html>

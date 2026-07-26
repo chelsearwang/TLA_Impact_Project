@@ -64,7 +64,7 @@
   }
   .mini-null{font-family:var(--mono);color:var(--null);font-size:13px;margin-left:8px;}
 
-  /* ---------- NODE DIAGRAM (section 02) ---------- */
+  /* ---------- NODE DIAGRAM ---------- */
   .node-diagram{
     display:flex;
     align-items:flex-end;
