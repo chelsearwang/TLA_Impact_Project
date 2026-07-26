@@ -3,7 +3,7 @@
 const quizData = [
   {
     q: 'When you insert a new node at the head of a linked list, what happens to the existing nodes?',
-    opts: ['They all shift one position to the right', 'Nothing — they stay in the exact same place in memory', 'They get copied to new memory locations', 'Their values change'],
+    opts: ['They all shift one position to the right', 'They stay in the exact same place in memory', 'They get copied to new memory locations', 'Their values change'],
     correct: 1,
     explanation: 'This is the core idea of a linked list: only pointers change. The existing nodes never move.'
   },
@@ -17,7 +17,7 @@ const quizData = [
     q: 'What does it mean when a node\'s "next" is null?',
     opts: ['The node is broken', 'The node has no value', 'The node is the last one in the list', 'The list is empty'],
     correct: 2,
-    explanation: 'Null next is exactly how traversal knows it has reached the end of the chain.'
+    explanation: 'Null next is how traversal knows it has reached the end of the linked list.'
   },
   {
     q: 'After reversing a linked list, what is true?',
