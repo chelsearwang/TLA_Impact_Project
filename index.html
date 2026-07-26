@@ -37,11 +37,11 @@
     <div class="explain-grid">
       <div class="explain-card">
         <h3>Head</h3>
-        <p>The list itself is nothing but a pointer called "head," pointing at the first node. Lose that pointer and the whole list is unreachable, even though the nodes still exist in memory.</p>
+        <p>The head is a pointer (reference) to the first node in the linked list. Without the head, there is no way to access the linked list.</p>
       </div>
       <div class="explain-card">
         <h3>Null</h3>
-        <p>The last node's "next" points at nothing — null. That's how traversal knows to stop. Forgetting to check for null is the single most common linked-list bug.</p>
+        <p>The null pointer (None in Python) marks the end of the linked list. The last node points to None because there is no node after it. Marks when to stop traversing the list.</p>
       </div>
     </div>
   </section>
