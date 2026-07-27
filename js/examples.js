@@ -1,6 +1,6 @@
 /* ============ EXAMPLE CARDS ============ */
-// Maps each example card to a function that resets list to known starting state
-// runs the matching operation from operations.js
+// Maps each example card to a function that resets the list to a known
+// starting state and runs the matching operation from operations.js.
 
 const EXAMPLES = {
   insertHead: {title:'Insert at the head', build:()=>{ freshList([4,9,2]); return buildInsertHeadSteps(7); }},
@@ -13,7 +13,7 @@ const EXAMPLES = {
 const exampleCards = document.querySelectorAll('.example-card');
 const currentExampleTitle = document.getElementById('currentExampleTitle');
 
-function runExample(key){
+function runExample(key, shouldScroll){
   stopPlay();
   const ex = EXAMPLES[key];
   const steps = ex.build();
@@ -22,12 +22,15 @@ function runExample(key){
   exampleCards.forEach(card=>{
     card.classList.toggle('active', card.dataset.ex === key);
   });
-  document.querySelector('.sim-panel').scrollIntoView({behavior:'smooth', block:'nearest'});
+  if(shouldScroll){
+    document.querySelector('.sim-panel').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
 }
 
 exampleCards.forEach(card=>{
-  card.addEventListener('click', ()=> runExample(card.dataset.ex));
+  card.addEventListener('click', ()=> runExample(card.dataset.ex, true));
 });
 
-// Run the first example on load so the simulation isn't blank when the page opens.
-runExample('insertHead');
+// Run the first example on load so the simulation isn't blank when the page opens
+// Pass false here so page does not jump down to sim on refresh
+runExample('insertHead', false);
