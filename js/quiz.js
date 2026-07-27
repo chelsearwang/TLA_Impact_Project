@@ -1,4 +1,8 @@
 /* ============ QUIZ ============ */
+// Wrong picks are marked and disabled individually, but the question stays
+// open — the person can keep trying other options. The correct answer and
+// its explanation are only revealed once they actually click the right one,
+// so a wrong guess never hands them the answer.
 
 const quizData = [
   {
@@ -29,7 +33,13 @@ const quizData = [
 
 const quizContainer = document.getElementById('quizContainer');
 const quizScore = document.getElementById('quizScore');
-let answered = 0, correctCount = 0;
+let solvedCount = 0;
+let totalAttempts = 0;
+
+function updateQuizScore(){
+  quizScore.textContent = 'Solved '+solvedCount+' / '+quizData.length+' ('+totalAttempts+' total '+(totalAttempts===1?'try':'tries')+')';
+}
+updateQuizScore();
 
 quizData.forEach((item, qi)=>{
   const card = document.createElement('div');
@@ -46,29 +56,33 @@ quizData.forEach((item, qi)=>{
   const fbEl = document.createElement('div');
   fbEl.className='quiz-fb';
 
-  let done = false;
+  let solved = false;
+
   item.opts.forEach((opt, oi)=>{
     const b = document.createElement('button');
     b.className='quiz-opt';
     b.textContent = opt;
     b.onclick = ()=>{
-      if(done) return;
-      done = true;
-      answered++;
+      if(solved || b.disabled) return;
+      totalAttempts++;
 
       const isCorrect = oi===item.correct;
       if(isCorrect){
+        solved = true;
+        solvedCount++;
         b.classList.add('correct');
-        correctCount++;
+        optsEl.querySelectorAll('.quiz-opt').forEach(btn=>btn.disabled = true);
+        fbEl.classList.remove('quiz-fb-hint');
         fbEl.innerHTML = '<strong>Correct.</strong> '+item.explanation;
       } else {
         b.classList.add('wrong');
-        optsEl.children[item.correct].classList.add('correct');
-        fbEl.innerHTML = '<strong>Not quite.</strong> The correct answer is highlighted above. '+item.explanation;
+        b.disabled = true;
+        fbEl.classList.add('quiz-fb-hint');
+        fbEl.textContent = 'Not quite — try again.';
       }
 
       fbEl.classList.add('show');
-      quizScore.textContent = 'Score: '+correctCount+' / '+answered+' answered ('+quizData.length+' total)';
+      updateQuizScore();
     };
     optsEl.appendChild(b);
   });
